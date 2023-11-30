@@ -20,14 +20,14 @@
             <a href="/" class="font-bold">FAST STORE</a>
             <!-- Left Menu -->
             <div class="hidden space-x-8 font-bold lg:flex">
-                <a href="/" class="hover:text-slate-300">Home</a>
-                <a href="/products" class="hover:text-slate-300">Products</a>
+                <a href="/" class="border-b border-transparent hover:text-slate-300 hover:border-gray-400 transition-all">Home</a>
+                <a href="/products" class="border-b border-transparent hover:text-slate-300 hover:border-gray-400 transition-all">Products</a>
             </div>
             
         </div>
         <!-- Right Buttons Menu -->
-        <div class="hidden items-center space-x-6 font-bold text-grayishViolet lg:flex">
-            <div class="hover:text-veryDarkViolet"><ShoppingCart /></div>
+        <div class="hidden items-center space-x-6 font-bold lg:flex">
+            <div class="cursor-pointer hover:text-slate-300"><ShoppingCart /></div>
         </div>
         <!-- TODO: Hamburger Menu -->
 

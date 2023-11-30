@@ -1,6 +1,10 @@
 <script>
     import "../../app.css";
-    import { ShoppingCart } from 'lucide-svelte';
+    import { 
+        ShoppingCart,
+        Facebook,
+        Instagram
+     } from 'lucide-svelte';
 
     let menuBtn;
     let menu;
@@ -58,4 +62,53 @@
     </div>
     <!-- TODO: Mobile Menu -->
 </nav>
-<slot />
+<div class="container p-4">
+    <slot />
+</div>
+<footer class="py-16 bg-zinc-900">
+    <div class="container flex flex-col text-white items-center justify-between mx-auto space-y-16 md:flex-row md:px-4 md:space-y-0 md:items-start">
+        <!-- Logo -->
+        <a href="/" class="font-bold">FAST STORE</a>
+        <!-- Menu Container -->
+        <div class="flex flex-col space-y-16 md:flex-row md:space-y-0 md:space-x-20">
+            <!-- Mennu 1 -->
+            <div class="flex flex-col items-center w-full md:items-start">
+                <div class="mb-5 font-bold capitalize">Title</div>
+                <div class="flex flex-col items-center space-y-3 md:items-start">
+                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
+                </div>
+            </div>
+            <!-- Mennu 2 -->
+            <div class="flex flex-col items-center w-full md:items-start">
+                <div class="mb-5 font-bold capitalize">Title</div>
+                <div class="flex flex-col items-center space-y-3 md:items-start">
+                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
+                </div>
+            </div>
+            <!-- Mennu 3 -->
+            <div class="flex flex-col items-center w-full md:items-start">
+                <div class="mb-5 font-bold capitalize">Title</div>
+                <div class="flex flex-col items-center space-y-3 md:items-start">
+                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
+                    <a href="#" class="capitalize hover:text-slate-300">Link 4</a>
+                </div>
+            </div>
+        </div>
+        <!-- Social Media Container -->
+        <div class="flex space-x-6">
+            <a href="#" class="hover:text-slate-500">
+                <Facebook />
+            </a>
+            <a href="#" class="hover:text-slate-500">
+                <Instagram />
+            </a>
+        </div>
+    </div>
+
+</footer>

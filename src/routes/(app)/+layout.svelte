@@ -27,7 +27,7 @@
         </div>
         <!-- Right Buttons Menu -->
         <div class="hidden items-center space-x-6 font-bold lg:flex">
-            <div class="cursor-pointer hover:text-slate-300"><ShoppingCart /></div>
+            <a href="/cart" class="hover:text-slate-300"><ShoppingCart /></a>
         </div>
         <!-- TODO: Hamburger Menu -->
 
@@ -52,8 +52,7 @@
             >
                 <a href="/" class="hover:text-slate-300">Home</a>
                 <a href="/products" class="hover:text-slate-300">Products</a>
-                <a href="/cart" class="hover:text-slate-300"><ShoppingCart /></a
-                >
+                <a href="/cart" class="hover:text-slate-300"><ShoppingCart /></a>
             </div>
         </div>
     </div>

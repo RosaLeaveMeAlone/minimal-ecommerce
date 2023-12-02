@@ -12,7 +12,7 @@
 <div class="group border-2 rounded-lg bg-white border-gray-500 hover:border-gray-900 transition-all overflow-hidden">
     <div class="relative w-full aspect-w-1 aspect-h-1">
         <div class="overflow-hidden w-full h-full">
-            <img src={images[0]} alt={name} class="object-cover w-full h-full group-hover:scale-110 transition-all" />
+            <img src={images[0]} alt={name} class="object-cover w-full h-full group-hover:scale-110 duration-300 transition-all" />
         </div>
     </div>
     <div class="flex flex-col items-center justify-center rounded-lg p-4">

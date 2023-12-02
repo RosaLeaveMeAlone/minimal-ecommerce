@@ -62,7 +62,7 @@
     </div>
     <!-- TODO: Mobile Menu -->
 </nav>
-<div class="container p-4">
+<div class="container p-4 bg-[#f5f5f5]">
     <slot />
 </div>
 <footer class="py-16 bg-zinc-900">

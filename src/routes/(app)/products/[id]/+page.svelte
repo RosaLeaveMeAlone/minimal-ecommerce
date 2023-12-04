@@ -1,5 +1,5 @@
 <script>
-    import { onMount, onDestroy } from 'svelte';
+    import { onMount } from 'svelte';
 	import { page } from '$app/stores';
     import { formatCurrency } from '$lib/helpers';
     const images = [
@@ -9,28 +9,36 @@
         'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
         'https://mockup-api.teespring.com/v3/image/xt1HmTTX9wpv1bPVro0k-UMNLrM/800/800.jpg',
         'https://mockup-api.teespring.com/v3/image/Ph_Dtl1xHviigYhzQ4KoHPDTuQI/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/qGseFt7Bf1l4QextOO5Ji1372MU/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/LCqSjFKRrqderwmHmX8sDXKCkKg/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/2TGAFlm9aEqLejOyeMrhIps67gU/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/wx2PwlO3g22E_QZ0r1dMrFe1qN0/800/800.jpg',
-        'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/qGseFt7Bf1l4QextOO5Ji1372MU/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/LCqSjFKRrqderwmHmX8sDXKCkKg/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/2TGAFlm9aEqLejOyeMrhIps67gU/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/wx2PwlO3g22E_QZ0r1dMrFe1qN0/800/800.jpg',
+        // 'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
     ];
     let activeImage = images[0];
 
     let galleryContainer;
-    let showNavButtons = false;
-    let disableLeftButton = false;
-    let disableRightButton = false;   
+    let showNavButtons = false; 
+
+
+    let touchStartX = 0;
+    let touchMoveX = 0;
 
     onMount(() => {
         calculateNavButtonsVisibility();
         galleryContainer.addEventListener('wheel', handleWheel);
-        galleryContainer.addEventListener('scroll', handleScroll);
+        galleryContainer.addEventListener('touchstart', handleTouchStart);
+        galleryContainer.addEventListener('touchmove', handleTouchMove);
+        galleryContainer.addEventListener('touchend', handleTouchEnd);
+        window.addEventListener('resize', handleResize);
     });
 
     const calculateNavButtonsVisibility = () =>  {
-        showNavButtons = images.length > 4;
+        const constWidth = 93;
+        const containerWidth = galleryContainer.offsetWidth;
+        console.log(containerWidth);
+        showNavButtons = images.length * constWidth > containerWidth;
     }
 
     const handleWheel = (e) => {
@@ -38,16 +46,24 @@
         galleryContainer.scrollLeft += e.deltaY * 0.5;
     }
 
-    const handleScroll = () => {
-        const imageWidth = galleryContainer.offsetWidth / 4;
-        const scrollLeft = galleryContainer.scrollLeft;
-        const activeImageIndex = Math.round(scrollLeft / imageWidth);
-        // setNavButtonsPosition(activeImageIndex);
+    const handleResize = () => {
+        calculateNavButtonsVisibility();
     }
 
-    // const setNavButtonsPosition = (activeImageIndex) => {
-    //     showNavButtons = images.length > 4;
-    // }
+    const handleTouchStart = (e) => {
+        touchStartX = e.touches[0].clientX;
+    }
+
+    const handleTouchMove = (e) => {
+        touchMoveX = e.touches[0].clientX;
+        const delta = (touchStartX - touchMoveX) * 0.1;
+        galleryContainer.scrollLeft += delta;
+    }
+
+    const handleTouchEnd = () => {
+        touchStartX = 0;
+        touchMoveX = 0;
+    }
 
     const navigateLeft = () => {
         galleryContainer.scrollLeft -= galleryContainer.offsetWidth / 4;
@@ -55,10 +71,6 @@
 
     const navigateRight = () => {
         galleryContainer.scrollLeft += galleryContainer.offsetWidth / 4;
-    }
-
-    const navigateTo = (index) => {
-        galleryContainer.scrollLeft = index * galleryContainer.offsetWidth / 4;
     }
 </script>
 <svelte:head>
@@ -71,7 +83,7 @@
             <img class="w-full h-full aspect-square object-cover" src={activeImage} alt="">
             <div class="flex">
                 {#if showNavButtons}
-                    <button on:click={navigateLeft}>←</button>
+                    <button on:click={navigateLeft} class="border-2 w-16 h-16 md:h-24 hover:bg-black hover:text-white transition-all">←</button>
                 {/if}
 
                 <div bind:this={galleryContainer} class="image-gallery-container w-full">
@@ -81,14 +93,14 @@
                                 on:click={() => { activeImage = image}}
                                 src={image} 
                                 alt="" 
-                                class="w-24 h-24 rounded-xl cursor-pointer flex-shrink-0 hover:opacity-70"
+                                class="w-16 h-16 rounded-xl cursor-pointer flex-shrink-0 hover:opacity-70 md:h-24 md:w-24"
                             >
                         {/each}
                     </div>
                 </div>
                 
                 {#if showNavButtons}
-                    <button on:click={navigateRight}>→</button>
+                    <button on:click={navigateRight} class="border-2 w-16 h-16 md:h-24 hover:bg-black hover:text-white transition-all">→</button>
                 {/if}
             </div>
         </div>

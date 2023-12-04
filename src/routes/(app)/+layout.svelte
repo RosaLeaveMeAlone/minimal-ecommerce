@@ -62,7 +62,7 @@
     </div>
     <!-- TODO: Mobile Menu -->
 </nav>
-<div class="container p-4 bg-[#f5f5f5]">
+<div class="container p-4 bg-[/f5f5f5]">
     <slot />
 </div>
 <footer class="py-16 bg-zinc-900">
@@ -75,37 +75,37 @@
             <div class="flex flex-col items-center w-full md:items-start">
                 <div class="mb-5 font-bold capitalize">Title</div>
                 <div class="flex flex-col items-center space-y-3 md:items-start">
-                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 3</a>
                 </div>
             </div>
             <!-- Mennu 2 -->
             <div class="flex flex-col items-center w-full md:items-start">
                 <div class="mb-5 font-bold capitalize">Title</div>
                 <div class="flex flex-col items-center space-y-3 md:items-start">
-                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 3</a>
                 </div>
             </div>
             <!-- Mennu 3 -->
             <div class="flex flex-col items-center w-full md:items-start">
                 <div class="mb-5 font-bold capitalize">Title</div>
                 <div class="flex flex-col items-center space-y-3 md:items-start">
-                    <a href="#" class="capitalize hover:text-slate-300">Link 1</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 2</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 3</a>
-                    <a href="#" class="capitalize hover:text-slate-300">Link 4</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 1</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 2</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 3</a>
+                    <a href="/" class="capitalize hover:text-slate-300">Link 4</a>
                 </div>
             </div>
         </div>
         <!-- Social Media Container -->
         <div class="flex space-x-6">
-            <a href="#" class="hover:text-slate-500">
+            <a href="/" class="hover:text-slate-500">
                 <Facebook />
             </a>
-            <a href="#" class="hover:text-slate-500">
+            <a href="/" class="hover:text-slate-500">
                 <Instagram />
             </a>
         </div>

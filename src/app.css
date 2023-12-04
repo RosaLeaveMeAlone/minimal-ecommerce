@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+.min-h-80vh {
+    min-height: 80vh;
+  }
+
 /* Hamburger Menu */
 .hamburger {
     cursor: pointer;

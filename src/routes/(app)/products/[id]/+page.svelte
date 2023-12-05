@@ -19,9 +19,8 @@
     let activeImage = images[0];
 
     let galleryContainer;
+    // TODO: Change the way of the scroll works
     let showNavButtons = false; 
-
-
     let touchStartX = 0;
     let touchMoveX = 0;
 

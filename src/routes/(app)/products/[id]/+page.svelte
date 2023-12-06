@@ -1,7 +1,7 @@
 <script>
-    import { onMount } from 'svelte';
 	import { page } from '$app/stores';
     import { formatCurrency } from '$lib/helpers';
+    import { ProductDetailGallery } from '$lib/components/app';
     const images = [
         'https://mockup-api.teespring.com/v3/image/jB0gJnRzPIn9F5A6lH0LQxxPIoM/800/800.jpg',
         'https://mockup-api.teespring.com/v3/image/wx2PwlO3g22E_QZ0r1dMrFe1qN0/800/800.jpg',
@@ -9,68 +9,14 @@
         'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
         'https://mockup-api.teespring.com/v3/image/xt1HmTTX9wpv1bPVro0k-UMNLrM/800/800.jpg',
         'https://mockup-api.teespring.com/v3/image/Ph_Dtl1xHviigYhzQ4KoHPDTuQI/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/qGseFt7Bf1l4QextOO5Ji1372MU/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/LCqSjFKRrqderwmHmX8sDXKCkKg/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/2TGAFlm9aEqLejOyeMrhIps67gU/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/wx2PwlO3g22E_QZ0r1dMrFe1qN0/800/800.jpg',
-        // 'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/qGseFt7Bf1l4QextOO5Ji1372MU/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/LCqSjFKRrqderwmHmX8sDXKCkKg/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/2TGAFlm9aEqLejOyeMrhIps67gU/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/wx2PwlO3g22E_QZ0r1dMrFe1qN0/800/800.jpg',
+        'https://mockup-api.teespring.com/v3/image/uN2Gxf5wmwH2WL_pDbwqGv-jo9M/800/800.jpg',
     ];
-    let activeImage = images[0];
-
-    let galleryContainer;
-    // TODO: Change the way of the scroll works
-    let showNavButtons = false; 
-    let touchStartX = 0;
-    let touchMoveX = 0;
-
-    onMount(() => {
-        calculateNavButtonsVisibility();
-        galleryContainer.addEventListener('wheel', handleWheel);
-        galleryContainer.addEventListener('touchstart', handleTouchStart);
-        galleryContainer.addEventListener('touchmove', handleTouchMove);
-        galleryContainer.addEventListener('touchend', handleTouchEnd);
-        window.addEventListener('resize', handleResize);
-    });
-
-    const calculateNavButtonsVisibility = () =>  {
-        const constWidth = 93;
-        const containerWidth = galleryContainer.offsetWidth;
-        console.log(containerWidth);
-        showNavButtons = images.length * constWidth > containerWidth;
-    }
-
-    const handleWheel = (e) => {
-        e.preventDefault();
-        galleryContainer.scrollLeft += e.deltaY * 0.5;
-    }
-
-    const handleResize = () => {
-        calculateNavButtonsVisibility();
-    }
-
-    const handleTouchStart = (e) => {
-        touchStartX = e.touches[0].clientX;
-    }
-
-    const handleTouchMove = (e) => {
-        touchMoveX = e.touches[0].clientX;
-        const delta = (touchStartX - touchMoveX) * 0.1;
-        galleryContainer.scrollLeft += delta;
-    }
-
-    const handleTouchEnd = () => {
-        touchStartX = 0;
-        touchMoveX = 0;
-    }
-
-    const navigateLeft = () => {
-        galleryContainer.scrollLeft -= galleryContainer.offsetWidth / 4;
-    }
-
-    const navigateRight = () => {
-        galleryContainer.scrollLeft += galleryContainer.offsetWidth / 4;
-    }
+   
 </script>
 <svelte:head>
 	<title>{$page.data.title}</title>
@@ -79,29 +25,7 @@
     <div class="flex flex-col justify-between md:flex-row gap-16 md:items-center">
         <!-- Image Gallery -->
         <div class="flex flex-col gap-6 md:w-2/4">
-            <img class="w-full h-full aspect-square object-cover" src={activeImage} alt="">
-            <div class="flex">
-                {#if showNavButtons}
-                    <button on:click={navigateLeft} class="border-2 w-16 h-16 md:h-24 hover:bg-black hover:text-white transition-all">←</button>
-                {/if}
-
-                <div bind:this={galleryContainer} class="image-gallery-container w-full">
-                    <div class="image-gallery h-24">
-                        {#each images as image}
-                            <img 
-                                on:click={() => { activeImage = image}}
-                                src={image} 
-                                alt="" 
-                                class="w-16 h-16 rounded-xl cursor-pointer flex-shrink-0 hover:opacity-70 md:h-24 md:w-24"
-                            >
-                        {/each}
-                    </div>
-                </div>
-                
-                {#if showNavButtons}
-                    <button on:click={navigateRight} class="border-2 w-16 h-16 md:h-24 hover:bg-black hover:text-white transition-all">→</button>
-                {/if}
-            </div>
+            <ProductDetailGallery images={images} />
         </div>
         <!-- Product Info -->
         <div class="flex flex-col gap-4 md:w-2/4">

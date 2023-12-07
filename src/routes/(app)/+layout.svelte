@@ -49,7 +49,7 @@
         <div
         bind:this={menu}
             id="menu"
-            class="absolute hidden p-6 rounded-lg bg-zinc-800 left-6 right-6 top-20 z-100"
+            class="absolute hidden p-6 rounded-lg bg-zinc-800 left-6 right-6 top-20 z-50"
         >
             <div
             class="flex flex-col items-center justify-center w-full space-y-6 font-bold text-white rounded-sm"

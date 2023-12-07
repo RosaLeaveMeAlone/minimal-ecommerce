@@ -1,26 +1,29 @@
 <script>
-        import { 
-            ArrowLeft,
-            ArrowRight,
-            X,
-     } from 'lucide-svelte';
-
+    import { 
+      ArrowLeft,
+      ArrowRight,
+      X,
+    } from 'lucide-svelte';
+    import { tick } from 'svelte';
+    import { fade } from 'svelte/transition';
     export let images;
     let elemCarousel;
+    let galleryContainer;
+    let selectedImageIndex = -1;
 
     const carouselLeft = () => {
         const x =
             elemCarousel.scrollLeft === 0
-                ? elemCarousel.clientWidth * elemCarousel.childElementCount // loop
-                : elemCarousel.scrollLeft - elemCarousel.clientWidth; // step left
+                ? elemCarousel.clientWidth * elemCarousel.childElementCount 
+                : elemCarousel.scrollLeft - elemCarousel.clientWidth; 
         elemCarousel.scroll(x, 0);
     }
 
     const carouselRight = () => {
         const x =
             elemCarousel.scrollLeft === elemCarousel.scrollWidth - elemCarousel.clientWidth
-                ? 0 // loop
-                : elemCarousel.scrollLeft + elemCarousel.clientWidth; // step right
+                ? 0 
+                : elemCarousel.scrollLeft + elemCarousel.clientWidth;
         elemCarousel.scroll(x, 0);
     }
 
@@ -28,18 +31,17 @@
         elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
     }
 
-    // Codigo para GalleryHorizontal, modificar para que se ajuste a todo el codigo:
-    let selectedImageIndex = -1;
-    function openGallery(index) {
-      console.log(index);
+    const openGallery = async (index) => {
       selectedImageIndex = index;
+      await tick();
+      console.log(galleryContainer);
     }
 
-    function closeGallery() {
+    const closeGallery = () => {
       selectedImageIndex = -1;
     }
 
-    function navigateGallery(direction) {
+    const navigateGallery = (direction) => {
       const lastIndex = images.length - 1;
 
       if (direction === 'prev') {
@@ -49,10 +51,15 @@
       }
     }
 
-    function handleClickOutside(event) {
-      console.log("aNTES DEL HOLA");
+    const handleClickOutside = (event) => {
       if (!event.target.closest('.gallery-container')) {
-        console.log("hola");
+        closeGallery();
+      }
+    }
+
+    const handleKeyDown = (event) => {
+      console.log(event.key);
+      if (event.key === 'Escape') {
         closeGallery();
       }
     }
@@ -100,7 +107,15 @@
 
 <!-- Full Gallery -->
 {#if selectedImageIndex >= 0}
-  <div class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80" on:click={handleClickOutside}>
+  <div 
+    bind:this={galleryContainer}
+    class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80" 
+    on:click={handleClickOutside}
+    on:keydown={handleKeyDown}
+    transition:fade={{ delay: 50, duration: 150 }}
+    role="dialog"
+    aria-label="Image Gallery"
+    >
     <div class="gallery-container">
       <button type="button" class="btn-icon variant-filled absolute top-1/2 left-4 transform -translate-y-1/2" on:click={() => navigateGallery('prev')}>
         <ArrowLeft />

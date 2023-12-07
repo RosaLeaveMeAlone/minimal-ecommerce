@@ -21,16 +21,16 @@
 <svelte:head>
 	<title>{$page.data.title}</title>
 </svelte:head>
-<div class="min-h-80vh max-w-7xl mx-auto p-8">
+<div class="min-h-80vh max-w-7xl mx-auto p-2 md:p-6">
     <div class="flex flex-col justify-between md:flex-row gap-16 md:items-center">
         <!-- Image Gallery -->
-        <div class="flex flex-col gap-6 md:w-2/4">
+        <div class="flex flex-col gap-6 w-full md:w-2/4">
             <ProductDetailGallery images={images} />
         </div>
         <!-- Product Info -->
-        <div class="flex flex-col gap-4 md:w-2/4">
+        <div class="flex flex-col gap-4 w-full md:w-2/4">
             <div class="">
-                <span class="text-zinc-500 font-semibold">Etiqueta</span>
+                <span class="badge variant-filled bg-blue-700">Nuevo</span>
                 <h1 class="text-3xl font-bold">Titulo Real</h1>
                 <p class="text-gray-700">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Molestias corporis sequi maiores officiis. Beatae distinctio, corrupti iusto voluptatibus voluptatum neque tempore laudantium a alias, magni provident! Ducimus fugit quibusdam voluptas!</p>
                 <h6 class="text-2xl font-semibold">{ formatCurrency(100) }</h6>

@@ -2,6 +2,7 @@
         import { 
             ArrowLeft,
             ArrowRight,
+            GalleryHorizontal,
      } from 'lucide-svelte';
 
     export let images;
@@ -26,6 +27,8 @@
     const carouselThumbnail = (index) => {
         elemCarousel.scroll(elemCarousel.clientWidth * index, 0);
     }
+
+    // Codigo para GalleryHorizontal, modificar para que se ajuste a todo el codigo:
 </script>
   
 <div class="card p-4 grid grid-cols-[auto_1fr_auto] gap-4 items-center">
@@ -37,7 +40,7 @@
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
 		{#each images as image}
 			<img
-				class="snap-center w-[1024px] rounded-container-token"
+				class="snap-center w-96 rounded-container-token md:w-full"
 				src={image}
 				alt={image}
 				loading="lazy"

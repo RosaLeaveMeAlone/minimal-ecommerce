@@ -74,7 +74,7 @@
 	<div bind:this={elemCarousel} class="snap-x snap-mandatory scroll-smooth flex overflow-x-auto">
 		{#each images as image, i}
       <img
-        class="snap-center w-96 rounded-container-token md:w-full"
+        class="snap-center w-full md:w-96 rounded-container-token"
         on:click={() => openGallery(i)}
         src={image}
         alt={image}
@@ -90,18 +90,18 @@
 
 <div class="card p-4 overflow-x-auto">
   <div class="flex gap-4">
-    {#each images as image, i}
-      <div class="flex-shrink-0">
-        <button type="button" on:click={() => carouselThumbnail(i)}>
-          <img
-            class="h-24 w-24 rounded-container-token"
-            src={image}
-            alt={image}
-            loading="lazy"
-          />
-        </button>
-      </div>
-    {/each}
+      {#each images as image, i}
+          <div class="flex-shrink-0">
+              <button type="button" on:click={() => carouselThumbnail(i)}>
+                  <img
+                      class="h-24 w-24 md:h-32 md:w-32 rounded-container-token"
+                      src={image}
+                      alt={image}
+                      loading="lazy"
+                  />
+              </button>
+          </div>
+      {/each}
   </div>
 </div>
 

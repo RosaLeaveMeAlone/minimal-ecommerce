@@ -1,9 +1,9 @@
-FROM node:19-alpine3.15 as dev-deps
+FROM node:20.11.0-alpine3.19 as dev-deps
 WORKDIR /app
 COPY package.json package.json
 RUN npm install
 
-FROM node:19-alpine3.15 as builder
+FROM node:20.11.0-alpine3.19 as builder
 WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .

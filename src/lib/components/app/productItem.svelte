@@ -6,7 +6,6 @@
     export let price;
     export let images;
     export let description;
-    export let id = 1;
 </script>
 
 <div class="group border-2 rounded-lg bg-white border-gray-500 hover:border-gray-900 transition-all overflow-hidden">

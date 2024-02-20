@@ -6,6 +6,8 @@
         Instagram
      } from 'lucide-svelte';
 
+
+
     let menuBtn;
     let menu;
 
@@ -32,7 +34,7 @@
             </div>
             <!-- Right Buttons Menu -->
             <div class="hidden items-center space-x-6 font-bold lg:flex">
-                <a href="/cart" class="hover:text-slate-300"><ShoppingCart /></a>
+                <a href="/" class="hover:text-slate-300"><ShoppingCart /></a>
             </div>
             <!-- TODO: Hamburger Menu -->
 
@@ -57,13 +59,14 @@
                 >
                     <a href="/" class="hover:text-slate-300">Home</a>
                     <a href="/products" class="hover:text-slate-300">Products</a>
-                    <a href="/cart" class="hover:text-slate-300"><ShoppingCart /></a>
+                    <a href="/" class="hover:text-slate-300"><ShoppingCart /></a>
                 </div>
             </div>
         </div>
     </div>
     <!-- TODO: Mobile Menu -->
 </nav>
+
 <div class="container p-4 bg-[/f5f5f5]">
     <slot />
 </div>

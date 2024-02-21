@@ -11,6 +11,7 @@ COPY . .
 ARG PUBLIC_APP_NAME
 ENV PUBLIC_APP_NAME=$PUBLIC_APP_NAME
 
+RUN npm install vite@latest
 RUN npm run build
 
 

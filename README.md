@@ -40,3 +40,13 @@ You can preview the production build with `npm run preview`.
 # Generate Docker image
 
 ```docker run build minimal-ecommerce:tag .```
+
+# Docker Step
+
+First of all build the image with the PUBLIC_APP_NAME build argument:
+
+``` docker build --build-arg PUBLIC_APP_NAME="WHAT EVER YOU WANT" -t image-name . ```
+
+And then run the image:
+
+``` docker run -d image-name ```

@@ -8,6 +8,9 @@ WORKDIR /app
 COPY --from=dev-deps /app/node_modules ./node_modules
 COPY . .
 
+ARG PUBLIC_APP_NAME
+ENV PUBLIC_APP_NAME=$PUBLIC_APP_NAME
+
 RUN npm run build
 
 
